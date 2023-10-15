@@ -25,5 +25,29 @@ button {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 24px;
+  border-radius: 20px;
+}
+
+a:link, a:visited {
+  border-radius: 25px;
+  background-color: #189945;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  border-radius: 25px;
+  background-color: #1DB954;
+}
+
+.header {
+  margin-top: 10%;
+}
+
+.box {
+  margin: 3%;
 }

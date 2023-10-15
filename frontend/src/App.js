@@ -70,15 +70,19 @@ const getTopPlayList = async (e) => {
       <div className = "header">
         <h1>SpotiVibe</h1>
       </div>
-      {!token ?
-        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
-          to Spotify</a>
-      : <button onClick={logout}>Logout</button>}
-
-      {token ?
-        <button onClick={getTopPlayList}>Run</button>
-        : <h2></h2>
-      }
+      <div className = "box">
+          {token ?
+          <button onClick={getTopPlayList}>Run</button>
+          : <h2></h2>
+          }
+        </div>
+        <div className = "box">
+          {!token ?
+          <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
+            to Spotify</a>
+        : <button onClick={logout}>Logout</button>}
+        </div>
+        
     </div>
   );
 }
