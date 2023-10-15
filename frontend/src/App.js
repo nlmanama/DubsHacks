@@ -33,6 +33,7 @@ function App() {
   const [token, setToken] = useState("")
   const [page, setPage] = useState(true)
   const [tracksData, setData] = useState([])
+  const [displayData, setDisplayData] = useState([0.2, 0.8, 0.3, 0.5])
 
   useEffect(() => {
     const hash = window.location.hash
@@ -90,12 +91,12 @@ const getTopPlayList = async (e) => {
       {
         label: 'Your Chart',
         backgroundColor: '#1DB954',
-        borderColor: 'rgba(179,181,198,1)',
+        borderColor: '#1DB954',
         pointBackgroundColor: 'rgba(179,181,198,1)',
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
         pointHoverBorderColor: 'rgba(179,181,198,1)',
-        data: [0.2, 0.8, 0.3, 0.5]
+        data: displayData
       }
     ]
   });
@@ -110,11 +111,14 @@ const getTopPlayList = async (e) => {
     },
     scales: {
         r: {
+            beginAtZero: true,
+            max: 1,
             pointLabels: {
                 color: '#1DB954',
             },
             grid: {
                 color: '#ffffff',
+                
             },
             angleLines: {
                 color: '#ebedef'
