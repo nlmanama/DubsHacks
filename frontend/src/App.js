@@ -17,7 +17,6 @@ function App() {
 
   const [token, setToken] = useState("")
 
-  const [tracks, setTracks] = useState([])
   const [tracksData, setData] = useState([])
 
   useEffect(() => {
@@ -40,35 +39,18 @@ const logout = () => {
   window.localStorage.removeItem("token")
 }
 
-const searchArtists = async (e) => {
-  e.preventDefault()
-  const {data} = await axios.get('https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=5&offset=0', {
-      headers: {
-          Authorization: `Bearer ${token}`
-      }
-  })
-  setTracks(data.items)
-  console.log(data.items)
-}
-
-
-
 const getTopPlayList = async (e) => {
   const {data} = await axios.get("https://api.spotify.com/v1/playlists/0YCW3npyBCo8QPS7nlZJM4/tracks", {
     headers: {
       Authorization: `Bearer ${token}`
    }
   })
-  setTracks(data.items)
-  console.log(data.items)
-}
 
-const getTrackFeature = async (e) => {
+  let tracks = data.items
+
   let temp = []
-  console.log(tracks)
   for (let i = 0; i < tracks.length; i++) {
     let trackId = tracks[i].track.id
-    console.log(trackId)
     let searchLink = "https://api.spotify.com/v1/audio-features/" + trackId
     const {data} = await axios.get(searchLink, {
     headers: {
@@ -80,17 +62,12 @@ const getTrackFeature = async (e) => {
 
   setData(temp)
   console.log(temp)
-}
 
-const handleData = async (e) => {
-  await getTopPlayList();
-  await getTrackFeature();
-  console.log(tracksData)
 }
 
   return (
     <div className="App">
-      <div classname = "header">
+      <div className = "header">
         <h1>SpotiVibe</h1>
       </div>
       {!token ?
@@ -102,11 +79,6 @@ const handleData = async (e) => {
         <button onClick={getTopPlayList}>Run</button>
         : <h2></h2>
       }
-
-      {token ?
-        <button onClick={getTrackFeature}>Analyse Data</button>
-        : <h2></h2>
-      } 
     </div>
   );
 }
