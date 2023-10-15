@@ -35,7 +35,7 @@ function App() {
   const [token, setToken] = useState("")
   const [page, setPage] = useState(true)
   const [tracksData, setData] = useState([])
-  const [displayData, setDisplayData] = useState([0.2, 0.8, 0.3, 0.5])
+  const [displayData, setDisplayData] = useState([0.4, 0.8, 0.3, 0.5])
 
     
   useEffect(() => {
@@ -95,7 +95,7 @@ const getTopPlayList = async (e) => {
         label: 'Your Chart',
         backgroundColor: '#1DB954',
         borderColor: '#1DB954',
-        pointBackgroundColor: 'rgba(179,181,198,1)',
+        pointBackgroundColor: '#FFFFFF',
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
         pointHoverBorderColor: 'rgba(179,181,198,1)',
@@ -108,7 +108,10 @@ const getTopPlayList = async (e) => {
     plugins: {
         legend: {
             labels: {
-                color: '#495057'
+                color: '#FFFFFF',
+                font: {
+                  size: 24
+                }
             }
         }
     },
@@ -117,14 +120,20 @@ const getTopPlayList = async (e) => {
             beginAtZero: true,
             max: 1,
             pointLabels: {
-                color: '#1DB954',
+                color: '#ffffff',
+                font: {
+                  size: 24
+                }
             },
             grid: {
-                color: '#ffffff',
+                color: '#828282',
                 
             },
             angleLines: {
                 color: '#ebedef'
+            },
+            ticks: {
+              display : false
             }
         }
       }
@@ -132,13 +141,14 @@ const getTopPlayList = async (e) => {
 
   return (
     <div className="App">
-      <div className = "header">
-        <h1>SpotiVibe</h1>
-      </div>
+      
 
 
       {page ?
         <div className = "spotify">
+          <div className = "header">
+            <h1>SpotiVibe</h1>
+          </div>
            <div className = "box">
              {token ?
              <button onClick={getTopPlayList}>Get Alignment</button>
@@ -160,7 +170,7 @@ const getTopPlayList = async (e) => {
                 options = {lightOptions}
               ></Radar>
             </div>
-            <button onClick={changePage}>Back</button>
+            {/* <button onClick={changePage}>Back</button> */}
           </div>
           
       }
