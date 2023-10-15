@@ -13,10 +13,11 @@ function App() {
   const REDIRECT_URI = "http://localhost:3000"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
+  const SCOPE = "user-top-read"
 
   const [token, setToken] = useState("")
 
-  const [artists, setArtists] = useState([])
+  const [tracks, setTracks] = useState([])
 
   useEffect(() => {
     const hash = window.location.hash
@@ -40,18 +41,13 @@ const logout = () => {
 
 const searchArtists = async (e) => {
   e.preventDefault()
-  const {data} = await axios.get("https://api.spotify.com/v1/search", {
+  const {data} = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
       headers: {
           Authorization: `Bearer ${token}`
-      },
-      params: {
-          q: "Taylor Swift",
-          type: "artist"
       }
   })
-
-  setArtists(data.artists.items)
-  console.log(data.artists.items)
+  setTracks(data.items)
+  console.log(data.items)
 }
 
   return (
@@ -60,7 +56,7 @@ const searchArtists = async (e) => {
         <h1>SpotiVibe</h1>
       </div>
       {!token ?
-        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
+        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
           to Spotify</a>
       : <button onClick={logout}>Logout</button>}
 
