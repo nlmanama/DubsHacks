@@ -1,1 +1,7 @@
 # DubsHacks
+
+Music is a staple part of everyone's life, especially university students. With something that is so present in life, a way of self-expression, it is sure to contain information about oneself. Our project aims to help you understand yourself through the music that you consume.
+
+We allow users to log into their Spotify account. Then, we get their top songs and parse it through our models of determine the mood-scores for each of our 4 moods. Afterwards, we plot the mood-scores onto a radar chart to display the users mood alignment based on their music choices. The music you play when you study, work, or many other times can often be a subconcious choice. With our project, you get to see your mood reflected visually, allow you to understand yourself better.
+
+Our project is a full-stack application. The frontend is built with React. We employed the Spotify API to allow users to log in and retrieve their information. Results from our model is passed into Chart.js to display the radar chart. In the backend, we used Flask API for deploying a machine learning model as a REST API. Node.js and MongoDB was used create our server side and connect our frontend with our backend database.
