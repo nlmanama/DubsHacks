@@ -25,8 +25,10 @@ button {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 24px;
+  font-size: 36px;
   border-radius: 20px;
+  width : 350px;
+  height : 70px;
 }
 
 a:link, a:visited {

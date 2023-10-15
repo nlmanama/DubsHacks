@@ -141,7 +141,7 @@ const getTopPlayList = async (e) => {
         <div className = "spotify">
            <div className = "box">
              {token ?
-             <button onClick={getTopPlayList}>Run</button>
+             <button onClick={getTopPlayList}>Get Alignment</button>
              : <img src={logo} alt="Logo" height={100} width={350} />
              }
             </div>
