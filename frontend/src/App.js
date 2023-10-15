@@ -13,7 +13,7 @@ function App() {
   const SCOPE = "user-top-read"
 
   const [token, setToken] = useState("")
-
+  const [page, setPage] = useState(true)
   const [tracksData, setData] = useState([])
 
   useEffect(() => {
@@ -59,29 +59,50 @@ const getTopPlayList = async (e) => {
 
   setData(temp)
   console.log(temp)
+  changePage()
+  }
 
-}
+  const changePage = () => {
+    setPage(!page);
+  }
 
   return (
     <div className="App">
       <div className = "header">
         <h1>SpotiVibe</h1>
       </div>
-      <div className = "box">
-          {token ?
-          <button onClick={getTopPlayList}>Run</button>
-          : <h2></h2>
-          }
-        </div>
-        <div className = "box">
-          {!token ?
-          <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
-            to Spotify</a>
-        : <button onClick={logout}>Logout</button>}
-        </div>
+
+
+      {page ?
+        <div className = "spotify">
+           <div className = "box">
+             {token ?
+             <button onClick={getTopPlayList}>Run</button>
+             : <h2></h2>
+             }
+            </div>
+            <div className = "box">
+             {!token ?
+             <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
+               to Spotify</a>
+           : <button onClick={logout}>Logout</button>}
+            </div>
+         </div>
+          : 
+          <div className = "chart">
+            <h1>Show Chart here</h1>
+            <button onClick={changePage}>Back</button>
+          </div>
+          
+      }
+
+      
+
         
+
     </div>
   );
 }
 
 export default App;
+
