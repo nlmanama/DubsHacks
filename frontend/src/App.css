@@ -31,7 +31,7 @@ button {
 
 a:link, a:visited {
   border-radius: 25px;
-  background-color: #189945;
+  background-color: #1DB954;
   color: white;
   padding: 14px 25px;
   text-align: center;
@@ -41,7 +41,7 @@ a:link, a:visited {
 
 a:hover, a:active {
   border-radius: 25px;
-  background-color: #1DB954;
+  background-color: #23d562;
 }
 
 .header {

@@ -12,6 +12,8 @@ import {
 
 import {Radar} from 'react-chartjs-2'
 
+import logo from './SpotifyLogo.png'
+
 ChartJS.register(
   LineElement,
   PointElement,
@@ -35,6 +37,7 @@ function App() {
   const [tracksData, setData] = useState([])
   const [displayData, setDisplayData] = useState([0.2, 0.8, 0.3, 0.5])
 
+    
   useEffect(() => {
     const hash = window.location.hash
     let token = window.localStorage.getItem("token")
@@ -139,7 +142,7 @@ const getTopPlayList = async (e) => {
            <div className = "box">
              {token ?
              <button onClick={getTopPlayList}>Run</button>
-             : <h2></h2>
+             : <img src={logo} alt="Logo" height={100} width={350} />
              }
             </div>
             <div className = "box">
