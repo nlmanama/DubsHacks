@@ -1,6 +1,24 @@
 import './App.css';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
+import { 
+  Chart  as ChartJS,
+  LineElement,
+  PointElement,
+  Tooltip,
+  Legend,
+  RadialLinearScale
+} from 'chart.js';
+
+import {Radar} from 'react-chartjs-2'
+
+ChartJS.register(
+  LineElement,
+  PointElement,
+  Tooltip,
+  Legend,
+  RadialLinearScale
+)
 
 
 
@@ -66,6 +84,45 @@ const getTopPlayList = async (e) => {
     setPage(!page);
   }
 
+  const [chartData] = useState({
+    labels: ["Happy", "Sad", "Energetic", "Calm"],
+    datasets: [
+      {
+        label: 'Your Chart',
+        backgroundColor: '#1DB954',
+        borderColor: 'rgba(179,181,198,1)',
+        pointBackgroundColor: 'rgba(179,181,198,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(179,181,198,1)',
+        data: [0.2, 0.8, 0.3, 0.5]
+      }
+    ]
+  });
+
+  const [lightOptions] = useState({
+    plugins: {
+        legend: {
+            labels: {
+                color: '#495057'
+            }
+        }
+    },
+    scales: {
+        r: {
+            pointLabels: {
+                color: '#1DB954',
+            },
+            grid: {
+                color: '#ffffff',
+            },
+            angleLines: {
+                color: '#ebedef'
+            }
+        }
+      }
+    });
+
   return (
     <div className="App">
       <div className = "header">
@@ -90,7 +147,12 @@ const getTopPlayList = async (e) => {
          </div>
           : 
           <div className = "chart">
-            <h1>Show Chart here</h1>
+            <div className="radar-chart">
+              <Radar
+                data = {chartData}
+                options = {lightOptions}
+              ></Radar>
+            </div>
             <button onClick={changePage}>Back</button>
           </div>
           
